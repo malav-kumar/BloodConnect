@@ -1,16 +1,48 @@
-# React + Vite
+🩸 BloodConnect – Community Blood Donor Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application that helps users quickly find and request blood donors based on blood group and city. This project demonstrates filtering, conditional rendering, and state management using modern React hooks.
 
-Currently, two official plugins are available:
+🧩 Problem Statement
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Hospitals and patients often struggle to find blood donors quickly during emergencies.
 
-## React Compiler
+BloodConnect aims to simplify the process by providing an easy-to-use interface where users can:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+View available donors
 
-## Expanding the ESLint configuration
+Filter by blood group
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Search by city
+
+Send blood donation requests
+
+🚀 Features
+✅ Core Functionalities
+
+Fetch donor data from API using useEffect
+
+Store and manage:
+
+Donors list
+
+Selected blood group
+
+Request status per donor
+
+Filter donors by blood group (A+, B+, O−, etc.)
+
+Display donor cards with:
+
+Name
+
+Blood Group
+
+City
+
+Availability
+
+"Request Help" button:
+
+Changes to "Request Sent ✅" on click
+
+Show total available donors count
