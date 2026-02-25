@@ -11,27 +11,26 @@ export default function Navbar({ page, setPage }) {
   };
 
   return (
-    <nav style={styles.navbar}>
+    <nav className="sticky top-0 z-[100] bg-white border-b-2 border-red-100 flex items-center justify-between px-10 h-16 shadow-[0_2px_12px_rgba(239,68,68,0.08)]">
       {/* Logo — left side */}
-      <div style={styles.logo} onClick={() => setPage("home")}>
-        <span style={styles.logoIcon}>🩸</span>
-        <span style={styles.logoText}>
-          Blood<span style={{ color: "#ef4444" }}>Connect</span>
+      <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => setPage("home")}>
+        <span className="text-2xl">🩸</span>
+        <span className="font-serif text-xl font-bold text-[#1a1a1a]">
+          Blood<span className="text-red-500">Connect</span>
         </span>
       </div>
 
       {/* Nav Links — right side */}
-      <div style={styles.navLinks}>
+      <div className="flex gap-2">
         {navLinks.map((link) => (
           <button
             key={link}
             onClick={() => setPage(link)}
-            style={{
-              ...styles.navBtn,
-              background: page === link ? "#ef4444" : "transparent",
-              color: page === link ? "#fff" : "#374151",
-              border: page === link ? "none" : "1.5px solid #e5e7eb",
-            }}
+            className={`rounded-lg px-5 py-2 font-serif text-sm font-semibold cursor-pointer transition-colors
+              ${page === link
+                ? "bg-red-500 text-white border-none"
+                : "bg-transparent text-gray-700 border border-gray-200"
+              }`}
           >
             {labelMap[link]}
           </button>
@@ -40,46 +39,3 @@ export default function Navbar({ page, setPage }) {
     </nav>
   );
 }
-
-const styles = {
-  navbar: {
-    position: "sticky",
-    top: 0,
-    zIndex: 100,
-    background: "#fff",
-    borderBottom: "2px solid #fee2e2",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0 40px",
-    height: 64,
-    boxShadow: "0 2px 12px rgba(239,68,68,0.08)",
-  },
-  logo: {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    cursor: "pointer",
-  },
-  logoIcon: {
-    fontSize: 24,
-  },
-  logoText: {
-    fontFamily: "Georgia, serif",
-    fontSize: 20,
-    fontWeight: 700,
-    color: "#1a1a1a",
-  },
-  navLinks: {
-    display: "flex",
-    gap: 8,
-  },
-  navBtn: {
-    borderRadius: 8,
-    padding: "8px 20px",
-    fontFamily: "Georgia, serif",
-    fontSize: 14,
-    fontWeight: 600,
-    cursor: "pointer",
-  },
-};

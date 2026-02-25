@@ -1,10 +1,6 @@
-// DonorCard — shows one donor's info
-// Props: donor (object), onRequest (function), isRequested (boolean)
-
 export default function DonorCard({ donor, onRequest, isRequested }) {
   const { name, email, city, bloodGroup, available } = donor;
 
-  // Button label changes based on state
   const buttonLabel = isRequested
     ? "Request Sent ✅"
     : !available
@@ -14,24 +10,30 @@ export default function DonorCard({ donor, onRequest, isRequested }) {
   const buttonDisabled = isRequested || !available;
 
   return (
-    <div style={styles.card}>
+    <div className="bg-white border-2 border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col gap-3">
       {/* Top row: Name + Blood Group badge */}
-      <div style={styles.topRow}>
+      <div className="flex justify-between items-start">
         <div>
-          <p style={styles.name}>{name}</p>
-          <p style={styles.email}>{email}</p>
+          <p className="font-serif text-[17px] font-bold text-gray-900 m-0">{name}</p>
+          <p className="font-serif text-xs text-gray-400 mt-1 mb-0">{email}</p>
         </div>
-        <div style={styles.bloodBadge}>{bloodGroup}</div>
+        <div className="bg-red-100 text-red-500 rounded-xl px-3.5 py-1.5 font-serif text-lg font-extrabold">
+          {bloodGroup}
+        </div>
       </div>
 
       {/* City and Availability tags */}
-      <div style={styles.tagsRow}>
-        <span style={styles.cityTag}>📍 {city}</span>
-        <span style={{
-          ...styles.availTag,
-          background: available ? "#f0fdf4" : "#fff5f5",
-          color: available ? "#16a34a" : "#dc2626",
-        }}>
+      <div className="flex flex-wrap gap-2">
+        <span className="bg-green-50 text-green-600 rounded-lg px-3 py-1 text-sm font-serif">
+          📍 {city}
+        </span>
+        <span
+          className={`rounded-lg px-3 py-1 text-sm font-serif ${
+            available
+              ? "bg-green-50 text-green-600"
+              : "bg-red-50 text-red-600"
+          }`}
+        >
           {available ? "✅ Available" : "❌ Unavailable"}
         </span>
       </div>
@@ -40,84 +42,19 @@ export default function DonorCard({ donor, onRequest, isRequested }) {
       <button
         onClick={() => onRequest(donor)}
         disabled={buttonDisabled}
-        style={{
-          ...styles.button,
-          background: isRequested ? "#f0fdf4" : !available ? "#f3f4f6" : "#ef4444",
-          color: isRequested ? "#16a34a" : !available ? "#9ca3af" : "#fff",
-          border: isRequested ? "2px solid #86efac" : !available ? "2px solid #e5e7eb" : "none",
-          cursor: buttonDisabled ? "default" : "pointer",
-        }}
+        className={`mt-1 rounded-xl py-2.5 w-full font-serif text-sm font-bold border-2 transition-opacity
+          ${
+            isRequested
+              ? "bg-green-50 text-green-600 border-green-300"
+              : !available
+              ? "bg-gray-100 text-gray-400 border-gray-200"
+              : "bg-red-500 text-white border-transparent hover:bg-red-600"
+          }
+          ${buttonDisabled ? "cursor-default" : "cursor-pointer"}
+        `}
       >
         {buttonLabel}
       </button>
     </div>
   );
 }
-
-const styles = {
-  card: {
-    background: "#fff",
-    border: "2px solid #f3f4f6",
-    borderRadius: 16,
-    padding: 24,
-    boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
-    display: "flex",
-    flexDirection: "column",
-    gap: 12,
-  },
-  topRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-  },
-  name: {
-    fontFamily: "Georgia, serif",
-    fontSize: 17,
-    fontWeight: 700,
-    color: "#1a1a1a",
-    margin: 0,
-  },
-  email: {
-    fontFamily: "Georgia, serif",
-    fontSize: 12,
-    color: "#9ca3af",
-    margin: "4px 0 0",
-  },
-  bloodBadge: {
-    background: "#fee2e2",
-    color: "#ef4444",
-    borderRadius: 10,
-    padding: "6px 14px",
-    fontFamily: "Georgia, serif",
-    fontSize: 18,
-    fontWeight: 800,
-  },
-  tagsRow: {
-    display: "flex",
-    gap: 8,
-    flexWrap: "wrap",
-  },
-  cityTag: {
-    background: "#f0fdf4",
-    color: "#16a34a",
-    borderRadius: 8,
-    padding: "4px 12px",
-    fontSize: 13,
-    fontFamily: "Georgia, serif",
-  },
-  availTag: {
-    borderRadius: 8,
-    padding: "4px 12px",
-    fontSize: 13,
-    fontFamily: "Georgia, serif",
-  },
-  button: {
-    marginTop: 4,
-    borderRadius: 10,
-    padding: "10px 0",
-    fontFamily: "Georgia, serif",
-    fontSize: 14,
-    fontWeight: 700,
-    width: "100%",
-  },
-};

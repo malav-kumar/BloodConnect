@@ -5,26 +5,29 @@ import Footer from "../components/Footer";
 
 export default function HomePage({ requestCount, setPage }) {
   return (
-    <div style={styles.wrapper}>
+    <div className="min-h-[calc(100vh-64px)] flex flex-col">
 
       {/* ── Banner ── */}
-      <div style={styles.banner}>
-        <p style={styles.emoji}>🩸</p>
-        <h1 style={styles.heading}>
+      <div className="bg-gradient-to-br from-red-50 via-red-100 to-red-200 px-10 py-20 text-center border-b-2 border-red-200">
+        <p className="text-[52px] mb-3">🩸</p>
+        <h1 className="font-serif text-[46px] font-extrabold text-[#1a1a1a] mb-4">
           Save Lives.{" "}
-          <span style={{ color: "#ef4444" }}>Donate Blood.</span>
+          <span className="text-red-500">Donate Blood.</span>
         </h1>
-        <p style={styles.subtext}>
+        <p className="font-serif text-[17px] text-gray-500 max-w-[540px] mx-auto mb-8 leading-relaxed">
           Connect with blood donors in your city instantly.
           Every drop counts — find the right donor at the right time.
         </p>
-        <button style={styles.ctaBtn} onClick={() => setPage("donor")}>
+        <button
+          onClick={() => setPage("donor")}
+          className="bg-red-500 text-white border-none rounded-xl px-9 py-3.5 font-serif text-base font-bold cursor-pointer shadow-[0_4px_20px_rgba(239,68,68,0.3)] hover:bg-red-600 transition-colors"
+        >
           Find Donors →
         </button>
       </div>
 
       {/* ── 3 Stat Cards ── */}
-      <div style={styles.statsRow}>
+      <div className="flex flex-wrap gap-6 px-10 py-12 justify-center bg-white">
         <StatCard icon="👤" number="10+" label="Donors Available" color="#ef4444" />
         <StatCard icon="🌆" number="10+" label="Cities Covered"   color="#3b82f6" />
         <StatCard icon="📋" number={requestCount} label="Requests Sent" color="#10b981" />
@@ -35,56 +38,3 @@ export default function HomePage({ requestCount, setPage }) {
     </div>
   );
 }
-
-const styles = {
-  wrapper: {
-    minHeight: "calc(100vh - 64px)",
-    display: "flex",
-    flexDirection: "column",
-  },
-  banner: {
-    background: "linear-gradient(135deg, #fff5f5 0%, #fee2e2 60%, #fecaca 100%)",
-    padding: "80px 40px",
-    textAlign: "center",
-    borderBottom: "2px solid #fecaca",
-  },
-  emoji: {
-    fontSize: 52,
-    margin: "0 0 12px",
-  },
-  heading: {
-    fontFamily: "Georgia, serif",
-    fontSize: 46,
-    fontWeight: 800,
-    color: "#1a1a1a",
-    margin: "0 0 16px",
-  },
-  subtext: {
-    fontFamily: "Georgia, serif",
-    fontSize: 17,
-    color: "#6b7280",
-    maxWidth: 540,
-    margin: "0 auto 32px",
-    lineHeight: 1.6,
-  },
-  ctaBtn: {
-    background: "#ef4444",
-    color: "#fff",
-    border: "none",
-    borderRadius: 10,
-    padding: "14px 36px",
-    fontFamily: "Georgia, serif",
-    fontSize: 16,
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 4px 20px rgba(239,68,68,0.3)",
-  },
-  statsRow: {
-    display: "flex",
-    gap: 24,
-    padding: "48px 40px",
-    justifyContent: "center",
-    background: "#fff",
-    flexWrap: "wrap",
-  },
-};
